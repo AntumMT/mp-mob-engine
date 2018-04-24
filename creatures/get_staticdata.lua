@@ -3,7 +3,7 @@
 Copyright (C) 2017 Mob API Developers and Contributors
 Copyright (C) 2015-2016 BlockMen <blockmen2015@gmail.com>
 
-items.lua
+get_staticdata.lua
 
 This software is provided 'as-is', without any express or implied warranty. In no
 event will the authors be held liable for any damages arising from the use of
@@ -21,21 +21,17 @@ be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 ]]
 
+-- Get Staticdata
+creatures.get_staticdata = function(self)
+	return {
+		hp = self.object:get_hp(),
+		mode = self.mode,
+		tamed = self.tamed,
+		modetimer = self.modetimer,
+		lifetimer = self.lifetimer,
+		soundtimer = self.soundtimer,
+		fall_dist = self.fall_dist,
+		in_water = self.in_water,
+	}
+end
 
-core.register_craftitem("creatures:flesh", {
-	description = "Flesh",
-	inventory_image = "creatures_flesh.png",
-	on_use = core.item_eat(2),
-})
-
-core.register_craftitem("creatures:meat", {
-	description = "Cooked Meat",
-	inventory_image = "creatures_meat.png",
-	on_use = core.item_eat(4),
-})
-
-core.register_craft({
-	type = "cooking",
-	output = "creatures:meat",
-	recipe = "creatures:flesh",
-})
